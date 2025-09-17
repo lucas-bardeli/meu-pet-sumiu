@@ -30,7 +30,15 @@ class UsuarioController {
         if (is_array($retorno)) {
           if (count($retorno) > 0) {
             if (password_verify($_POST["senha"], $retorno[0]->senha)) {
-              $msg[2] = "Login com sucesso!";
+              // logado
+              if (!isset($_SESSION)) {
+                session_start();
+              }
+              $_SESSION["nome"] = $retorno[0]->nome;
+              $_SESSION["id"] = $retorno[0]->id_usuario;
+              $_SESSION["email"] = $retorno[0]->email;
+
+              header("location:index.php");
             }
             else {
               $msg[2] = "Credenciais inválidas!";
@@ -44,7 +52,7 @@ class UsuarioController {
     }
     // require views formulário
     require_once "Views/login.php";
-  }
+  } // fim login
 
   public function inserir() {
     $msg = array("", "", "", "");
@@ -93,7 +101,25 @@ class UsuarioController {
     }
 
     require_once "Views/form-usuario.php";
-  }
+  } // fim inserir
+
+  public function logout() {
+    if (!isset($_SESSION)) {
+      session_start();
+    }
+    $_SESSION = array();
+    session_destroy();
+    header("location:index.php");
+  } // fim logout
+
+  public function esqueci_senha() {
+    $msg = "";
+    if ($_POST) {
+
+    }
+    require_once "Views/form-email.php";
+  } // fim esqueci_senha
 }
+// fim da classe
 
 ?>

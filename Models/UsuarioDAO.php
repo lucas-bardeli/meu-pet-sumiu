@@ -30,7 +30,7 @@ class UsuarioDAO extends Conexao {
   }
 
   public function login($usuario) {
-    $sql = "SELECT id_usuario, email, senha FROM usuarios WHERE email=?";
+    $sql = "SELECT id_usuario, email, senha, nome FROM usuarios WHERE email=?";
 
     try {
       $smt = $this->db->prepare($sql);

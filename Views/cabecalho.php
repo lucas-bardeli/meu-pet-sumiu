@@ -1,3 +1,10 @@
+<?php
+
+if (!isset($_SESSION)) {
+  session_start();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -20,12 +27,20 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
+
+          <?php if (isset($_SESSION["id"])) { ?>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?controle=UsuarioController&metodo=logout">Sair</a>
+          </li>
+          <?php } else { ?>
           <li class="nav-item">
             <a class="nav-link" href="index.php?controle=UsuarioController&metodo=inserir">Criar conta</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="index.php?controle=UsuarioController&metodo=login">Login</a>
           </li>
+          <?php } ?>
+
         </ul>
       </div>
     </div>
