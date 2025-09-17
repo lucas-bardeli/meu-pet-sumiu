@@ -47,7 +47,7 @@ class UsuarioDAO extends Conexao {
   }
 
   public function valida_email($usuario) {
-    $sql = "SELECT email FROM usuarios WHERE email=?";
+    $sql = "SELECT email, nome, id_usuario FROM usuarios WHERE email=?";
 
     try {
       $smt = $this->db->prepare($sql);

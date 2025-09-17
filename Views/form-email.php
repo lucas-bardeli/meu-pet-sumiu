@@ -7,7 +7,7 @@ require_once "cabecalho.php"
     <div class="container">
       <h1 style="margin-top: 60px; margin-bottom: 20px">Recuperar Senha</h1>
       <div class="col-md-6 text-danger mb-3">
-        <?php echo "Será enviado um email para recuperação de senha"; ?>
+        <?php echo $msg_email; ?>
       </div>
       <form class="row g-3" action="#" method="post">
         <div class="col-md-6">

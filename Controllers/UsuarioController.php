@@ -3,6 +3,7 @@
 require_once "Models/Conexao.php";
 require_once "Models/UsuarioDAO.php";
 require_once "Models/Usuarios.php";
+require_once "config.php";
 
 class UsuarioController {
   public function login() {
@@ -114,8 +115,48 @@ class UsuarioController {
 
   public function esqueci_senha() {
     $msg = "";
+    $msg_email = "Será enviado um email para recuperação de senha";
     if ($_POST) {
+      if (empty($_POST["email"])) {
+        $msg = "Preencha o email!";
+      }
+      else {
+        // verificar se é um email de algum usuário do sistema
+        $usuario = new Usuarios(email: $_POST["email"]);
+        $usuarioDAO = new UsuarioDAO();
+        $retorno = $usuarioDAO->valida_email($usuario);
 
+        if (is_array($retorno)) {
+          if (count($retorno) > 0) {
+            // enviar email
+          }
+          else {
+            $assunto = "Recuperação de senha - Meu Pet Sumiu.";
+            $link = "index.php?controle=UsuarioController&metodo=trocar_senha&id=" . base64_encode($retorno[0]->id_usuario);
+            $nomeDestino = $retorno[0]->nome;
+            $destino = $retorno[0]->email;
+            $remetente = "seu_email";
+            $nomeRemetente = "Meu Pet Sumiu";
+
+            $mensagem = "<h2>Senhor(a) " . $nomeDestino . "</h2> <br> <p>Recebemos a solicitação de recuperação de senha.
+            Caso não tenha sido requerida por você, desconsidere essa mensagem.
+            Caso contrário, clique no link abaixo para informar a nova senha</p>
+            <a href='" . $link . "' target='_blank'>Clique aqui</a> <br><br> <p>Atenciosamente<br>" . $nomeRemetente . "</p>";
+
+            $ret = sendMail($assunto, $mensagem, $remetente, $nomeRemetente, $destino, $nomeDestino);
+
+            if ($ret) {
+              $msg_email = "Foi enviado um email de recuperação de senha. Verifique!";
+            }
+            else {
+              $msg_email = "Erro no envio do email de recuperação. Tente mais tarde!";
+            }
+          }
+        }
+        else {
+          $msg = "Verifique o email informado!";
+        }
+      }
     }
     require_once "Views/form-email.php";
   } // fim esqueci_senha
