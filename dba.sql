@@ -1,4 +1,4 @@
-CREATE DATABASE meu_pet_sumiu;
+CREATE DATABASE IF NOT EXISTS meu_pet_sumiu;
 
 USE meu_pet_sumiu;
 

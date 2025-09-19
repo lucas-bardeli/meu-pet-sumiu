@@ -1,1 +1,11 @@
+
+# Instalando dependências com o Composer
+/vendor/
+
 # Colocar arquivo de configuração aqui quando for criado
+
+# Editors/IDEs
+.vs/
+.vscode/
+.idea/
+*.DS_Store
