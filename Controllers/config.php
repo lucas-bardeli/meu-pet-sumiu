@@ -1,11 +1,7 @@
 <?php
-require_once 'PHPMailer/PHPMailer/PHPMailer.php';
-require_once 'PHPMailer/PHPMailer/SMTP.php';
-require_once 'PHPMailer/PHPMailer/Exception.php';
+require_once 'vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-use PHPMailer\PHPMailer\SMTP;
 
 function sendMail($assunto, $mensagem, $remetente, $nomeRemetente, $destino, $nomeDestino) {
 
@@ -17,8 +13,7 @@ $mail->Host = 'smtp.gmail.com';
 //$mail->SMTPDebug = 1;  // debugging: 1 = errors and messages, 2 = messages only
 $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
 $mail->Port = 465; 
-$mail->Username = 'seu_email';
-$mail->Password = 'sua_senha';
+
 
 /*
 HOTMAIL

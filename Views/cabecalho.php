@@ -17,8 +17,8 @@ if (!isset($_SESSION)) {
 </head>
 <body>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Meu Pet Sumiu</a>
+    <div class="container-fluid px-5">
+      <a class="navbar-brand fs-4" href="#">Meu Pet Sumiu</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -28,18 +28,18 @@ if (!isset($_SESSION)) {
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
 
-          <?php if (isset($_SESSION["id"])) { ?>
+          <?php if (isset($_SESSION["id"])): ?>
           <li class="nav-item">
             <a class="nav-link" href="index.php?controle=UsuarioController&metodo=logout">Sair</a>
           </li>
-          <?php } else { ?>
+          <?php else: ?>
           <li class="nav-item">
             <a class="nav-link" href="index.php?controle=UsuarioController&metodo=inserir">Criar conta</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="index.php?controle=UsuarioController&metodo=login">Login</a>
           </li>
-          <?php } ?>
+          <?php endif ?>
 
         </ul>
       </div>

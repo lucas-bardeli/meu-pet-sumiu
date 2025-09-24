@@ -115,7 +115,9 @@ class UsuarioController {
 
   public function esqueci_senha() {
     $msg = "";
+    $link = "";
     $msg_email = "Será enviado um email para recuperação de senha";
+    
     if ($_POST) {
       if (empty($_POST["email"])) {
         $msg = "Preencha o email!";
@@ -129,28 +131,36 @@ class UsuarioController {
         if (is_array($retorno)) {
           if (count($retorno) > 0) {
             // enviar email
-          }
-          else {
             $assunto = "Recuperação de senha - Meu Pet Sumiu.";
-            $link = "index.php?controle=UsuarioController&metodo=trocar_senha&id=" . base64_encode($retorno[0]->id_usuario);
+            $link = "http://localhost/meu-pet-sumiu/index.php?controle=UsuarioController&metodo=trocar_senha&id=" . base64_encode($retorno[0]->id_usuario);
             $nomeDestino = $retorno[0]->nome;
             $destino = $retorno[0]->email;
-            $remetente = "seu_email";
+            $remetente = "lucasbbsjau@gmail.com";
             $nomeRemetente = "Meu Pet Sumiu";
 
-            $mensagem = "<h2>Senhor(a) " . $nomeDestino . "</h2> <br> <p>Recebemos a solicitação de recuperação de senha.
-            Caso não tenha sido requerida por você, desconsidere essa mensagem.
-            Caso contrário, clique no link abaixo para informar a nova senha</p>
-            <a href='" . $link . "' target='_blank'>Clique aqui</a> <br><br> <p>Atenciosamente<br>" . $nomeRemetente . "</p>";
+            $mensagem = "
+            <h2>Senhor(a) " . $nomeDestino . "</h2> <br> 
+            <p>
+              Recebemos a solicitação de recuperação de senha.
+              Caso não tenha sido requerida por você, desconsidere essa mensagem.
+              Caso contrário, clique no link abaixo para informar a nova senha
+            </p>
+            <a href='" . $link . "' target='_blank'>Clique aqui</a> <br><br> 
+            <p>
+              Atenciosamente<br>" . $nomeRemetente . 
+            "</p>";
 
-            $ret = sendMail($assunto, $mensagem, $remetente, $nomeRemetente, $destino, $nomeDestino);
+            // $ret = sendMail($assunto, $mensagem, $remetente, $nomeRemetente, $destino, $nomeDestino);
 
-            if ($ret) {
-              $msg_email = "Foi enviado um email de recuperação de senha. Verifique!";
-            }
-            else {
-              $msg_email = "Erro no envio do email de recuperação. Tente mais tarde!";
-            }
+            // if ($ret) {
+            //   $msg_email = "Foi enviado um email de recuperação de senha. Verifique!";
+            // }
+            // else {
+            //   $msg_email = "Erro no envio do email de recuperação. Tente mais tarde!";
+            // }
+          }
+          else {
+            $msg = "Verifique o email informado!";
           }
         }
         else {
@@ -160,6 +170,19 @@ class UsuarioController {
     }
     require_once "Views/form-email.php";
   } // fim esqueci_senha
+
+  public function trocar_senha() {
+    $msg = array("", "");
+    if (isset($_GET["id"])) {
+      $id = base64_decode($_GET["id"]);
+
+      if ($_POST) {
+
+      }
+
+      require_once "Views/trocar-senha.php";
+    }
+  } // fim trocar_senha
 }
 // fim da classe
 
