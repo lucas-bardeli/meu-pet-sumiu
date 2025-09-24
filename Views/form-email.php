@@ -12,7 +12,7 @@ require_once "cabecalho.php"
 
       <!-- Retirar quando for possível o envio do email -->
       <?php if ($link != ""): ?>
-        <a href='" . $link . "' target='_blank'>Clique aqui</a>
+        <a href='<?= $link ?>' target='_blank'>Clique aqui</a>
       <?php endif ?>
 
       <form class="row g-3" action="#" method="post">

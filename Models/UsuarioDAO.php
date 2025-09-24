@@ -62,6 +62,24 @@ class UsuarioDAO extends Conexao {
       return "Erro ao validar email!";
     }
   }
+  
+  public function alterar_senha($usuario) {
+    $sql = "UPDATE usuarios SET senha=? WHERE id_usuario=?";
+    
+    try {
+      $smt = $this->db->prepare($sql);
+      $smt->bindValue(1, $usuario->getSenha());
+      $smt->bindValue(2, $usuario->getId_usuario());
+      $smt->execute();
+      $this->db = null;
+    
+      return "Senha alterada com sucesso!";
+    }
+    catch (PDOException $e) {
+      $this->db = null;
+      return "Erro ao alterar senha!";
+    }
+  }
 }
 
 ?>
