@@ -3,6 +3,7 @@
 /vendor/
 
 # Colocar arquivo de configuração aqui quando for criado
+.env
 
 # Editors/IDEs
 .vs/

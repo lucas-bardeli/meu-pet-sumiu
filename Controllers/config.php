@@ -15,8 +15,8 @@ function sendMail($assunto, $mensagem, $remetente, $nomeRemetente, $destino, $no
 		//$mail->SMTPDebug = 1;  // debugging: 1 = errors and messages, 2 = messages only
 		$mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
 		$mail->Port = 465; 
-		$mail->Username = '';
-		$mail->Password = '';
+		$mail->Username = $email_username;
+		$mail->Password = $email_password;
 
 		/*
 		HOTMAIL
@@ -45,12 +45,13 @@ function sendMail($assunto, $mensagem, $remetente, $nomeRemetente, $destino, $no
 		// Limpa os destinatários e os anexos
 		$mail->ClearAllRecipients();
 		$mail->ClearAttachments();
+
+    return true;
 	}
 	catch (Exception $e) {
-		error_log("Erro ao enviar e-mail: {$mail->ErrorInfo}");
+		error_log("Erro ao enviar e-mail: $mail->ErrorInfo");
 		return false;
 	}
-
 }
 
 ?>
