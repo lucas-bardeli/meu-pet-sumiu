@@ -27,7 +27,17 @@ if ($_GET) {
 }
 else {
   // rota inicial
+  // include "Controllers/InicioController.php";
+  // Se não encontrar o arquivo gera um Warning e continua executando. Inclui mais de uma vez.
+
+  // include_once "Controllers/InicioController.php";
+  // Inclui apenas uma vez.
+
+  // require "Controllers/InicioController.php";
+  // Se não encontrar o arquivo gera um Fatal error e para a execução. Inclui mais de uma vez.
+
   require_once "Controllers/InicioController.php";
+  // Inclui apenas uma vez.
   
   $obj = new InicioController();
   $obj->inicio();

@@ -9,6 +9,7 @@ class Usuarios {
     private string $telefone = ""
   ) {}
 
+  // Encapsulamento
   public function getId_usuario() {
     return $this->id_usuario;
   }

@@ -57,37 +57,37 @@ class Pets {
 
   // set
   public function setId_pet($id_pet) {
-    return $this->id_pet =  $id_pet;
+    return $this->id_pet = $id_pet;
   }
   public function setNome($nome) {
-    return $this->nome =  $nome;
+    return $this->nome = $nome;
   }
   public function setIdade($idade) {
-    return $this->idade =  $idade;
+    return $this->idade = $idade;
   }
   public function setRaca($raca) {
-    return $this->raca =  $raca;
+    return $this->raca = $raca;
   }
   public function setPorte($porte) {
-    return $this->porte =  $porte;
+    return $this->porte = $porte;
   }
   public function setData($data) {
-    return $this->data =  $data;
+    return $this->data = $data;
   }
   public function setImagem($imagem) {
-    return $this->imagem =  $imagem;
+    return $this->imagem = $imagem;
   }
   public function setCor($cor) {
-    return $this->cor =  $cor;
+    return $this->cor = $cor;
   }
   public function setCor_olhos($cor_olhos) {
-    return $this->cor_olhos =  $cor_olhos;
+    return $this->cor_olhos = $cor_olhos;
   }
   public function setObservacoes($observacoes) {
-    return $this->observacoes =  $observacoes;
+    return $this->observacoes = $observacoes;
   }
   public function setSituacao($situacao) {
-    return $this->situacao =  $situacao;
+    return $this->situacao = $situacao;
   }
 }
 
