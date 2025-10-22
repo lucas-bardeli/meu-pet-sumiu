@@ -54,6 +54,9 @@ class Pets {
   public function getSituacao() {
     return $this->situacao;
   }
+  public function getUsuario() {
+    return $this->usuario;
+  }
 
   // métodos set
   public function setId_pet($id_pet) {

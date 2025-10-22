@@ -4,11 +4,18 @@ if (!isset($_SESSION)) {
 	session_start();
 }
 
+require_once "Models/Conexao.php";
+require_once "Models/PetDAO.php";
+require_once "Models/Pets.php";
+
 class PetController {
   public function inserir() {
     $msg = array("","","","","","","");
 
     if($_POST) {
+      // echo "<pre>";
+      // var_dump($_FILES["imagem"]);
+      // echo "</pre>";
       $erro = false;
 
       if ($_POST["porte"] == 0) {
@@ -31,8 +38,12 @@ class PetController {
         $msg[4] = "Preencha a cor dos olhos do pet";
         $erro = true;
       }
+      if (!isset($_POST["situacao"])) {
+        $msg[5] = "Informe a situação do pet";
+        $erro = true;
+      }
       if ($_FILES["imagem"]["name"] == "") {
-        $msg[5] = "Selecione a imagem do pet";
+        $msg[6] = "Selecione a imagem do pet";
         $erro = true;
       }
       else {
@@ -41,14 +52,20 @@ class PetController {
           $_FILES["imagem"]["type"] != "image/jpg" && 
           $_FILES["imagem"]["type"] != "image/jpeg"
         ) {
-          $msg[5] = "Tipo de imagem invalido";
+          $msg[6] = "Tipo de imagem invalido";
           $erro = true;
         }
       }
       
       if (!$erro) {
         //inserir no BD - instanciar os objetos
-        
+        $usuario = new Usuarios($_SESSION["id"]);
+        $pet = new Pets(
+          0,$_POST["nome"],$_POST["idade"],$_POST["raca"],
+          $_POST["porte"],$_POST["local"],$_POST["data"],
+          $_FILES["imagem"]["name"],$_POST["cor"],$_POST["cor_olhos"],
+          $_POST["observacoes"],$_POST["situacao"],$usuario
+        );
         $petDAO = new petDAO();
         
         $petDAO->inserir($pet);
@@ -57,17 +74,15 @@ class PetController {
         die();
       }
       
-    }//fim if post
+    } // fim if post
     
     require_once "Views/form-pet.php";
   }
 
   public function alterar() {
   }
-
   public function mudar_situacao() {
   }
-
   public function listar() {
   }
 }
