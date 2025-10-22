@@ -11,7 +11,6 @@ if (!isset($_SESSION)) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meu Pet Sumiu</title>
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </head>
@@ -29,6 +28,9 @@ if (!isset($_SESSION)) {
           </li>
 
           <?php if (isset($_SESSION["id"])): ?>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?controle=PetController&metodo=inserir">Cadastrar Pets</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="index.php?controle=UsuarioController&metodo=logout">Sair</a>
           </li>

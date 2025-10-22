@@ -5,8 +5,8 @@ class Pets {
     private int $id_pet = 0,
     private string $nome = "",
     private string $idade = "",
-    private string $raca = "",
     private string $porte = "",
+    private string $raca = "",
     private string $local = "",
     private string $data = "",
     private string $imagem = "",
@@ -17,7 +17,7 @@ class Pets {
     private Usuarios $usuario = new Usuarios()
   ) {}
 
-  // get
+  // métodos get
   public function getId_pet() {
     return $this->id_pet;
   }
@@ -27,11 +27,11 @@ class Pets {
   public function getIdade() {
     return $this->idade;
   }
-  public function getRaca() {
-    return $this->raca;
-  }
   public function getPorte() {
     return $this->porte;
+  }
+  public function getRaca() {
+    return $this->raca;
   }
   public function getLocal() {
     return $this->local;
@@ -55,7 +55,7 @@ class Pets {
     return $this->situacao;
   }
 
-  // set
+  // métodos set
   public function setId_pet($id_pet) {
     return $this->id_pet = $id_pet;
   }
@@ -65,11 +65,11 @@ class Pets {
   public function setIdade($idade) {
     return $this->idade = $idade;
   }
-  public function setRaca($raca) {
-    return $this->raca = $raca;
-  }
   public function setPorte($porte) {
     return $this->porte = $porte;
+  }
+  public function setRaca($raca) {
+    return $this->raca = $raca;
   }
   public function setData($data) {
     return $this->data = $data;

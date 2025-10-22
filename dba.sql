@@ -1,11 +1,13 @@
-CREATE DATABASE IF NOT EXISTS meu_pet_sumiu;
+
+CREATE DATABASE IF NOT EXISTS meu_pet_sumiu CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;;
 
 USE meu_pet_sumiu;
 
 DROP TABLE IF EXISTS usuarios;
+DROP TABLE IF EXISTS pets;
 
 CREATE TABLE usuarios (
-  id_usuario BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  id_usuario BIGINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   nome VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   senha VARCHAR(255) NOT NULL,
@@ -13,18 +15,21 @@ CREATE TABLE usuarios (
 );
 
 CREATE TABLE pets (
-  id_pet BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  id_pet BIGINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   nome VARCHAR(255),
-  idade INT,
-  raca VARCHAR(255),
-  porte ENUM('Pequeno', 'Médio', 'Grande'),
-  local VARCHAR(255),
-  data DATETIME,
-  imagem VARCHAR(255),
-  cor VARCHAR(255),
-  cor_olhos VARCHAR(255),
+  idade VARCHAR(255),
+  porte ENUM('Mini','Pequeno','Médio','Grande') NOT NULL,
+  raca VARCHAR(255) NOT NULL,
+  local VARCHAR(255) NOT NULL,
+  data DATE NOT NULL,
+  imagem VARCHAR(255) NOT NULL,
+  cor VARCHAR(255) NOT NULL,
+  cor_olhos VARCHAR(255) NOT NULL,
   observacoes TEXT,
-  situacao ENUM('Procurando pet', 'Procurando tutor', 'finalizado'),
-  imagem VARCHAR(255),
-  usuario_id BIGINT UNSIGNED,
+  situacao VARCHAR(255) NOT NULL,
+  usuario_id BIGINT UNSIGNED NOT NULL,
+
+  FOREING KEY (usuario_id) REFERENCES usuarios (id_usuario)
 );
+
+COMMIT;
