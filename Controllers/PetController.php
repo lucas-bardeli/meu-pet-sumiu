@@ -58,7 +58,7 @@ class PetController {
       }
       
       if (!$erro) {
-        //inserir no BD - instanciar os objetos
+        // inserir no BD - instanciar os objetos
         $usuario = new Usuarios($_SESSION["id"]);
         $pet = new Pets(
           0,$_POST["nome"],$_POST["idade"],$_POST["raca"],
@@ -69,7 +69,16 @@ class PetController {
         $petDAO = new petDAO();
         
         $petDAO->inserir($pet);
-        //fazer upload da imagem
+
+        // fazer upload da imagem
+        // Verifica se a pasta existe
+        if (!is_dir("assets/")) {
+          // Cria a pasta com permissão 0755 (leitura e execução para todos, escrita só para o dono)
+          mkdir("assets/", 0755, true);
+        }
+        $caminho = "assets/" . $_FILES["imagem"]["name"];
+        move_uploaded_file($_FILES["imagem"]["tmp_name"], $caminho);
+
         header("location:index.php");
         die();
       }

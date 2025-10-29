@@ -1,5 +1,5 @@
 
-CREATE DATABASE IF NOT EXISTS meu_pet_sumiu CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;;
+CREATE DATABASE IF NOT EXISTS meu_pet_sumiu CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 USE meu_pet_sumiu;
 
