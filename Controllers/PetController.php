@@ -50,7 +50,7 @@ class PetController {
           $_FILES["imagem"]["type"] != "image/jpg" && 
           $_FILES["imagem"]["type"] != "image/jpeg"
         ) {
-          $msg[6] = "Tipo de imagem invalido";
+          $msg[6] = "Tipo de imagem inválido";
           $erro = true;
         }
       }

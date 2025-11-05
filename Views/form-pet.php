@@ -4,8 +4,8 @@ require_once "cabecalho.php";
 
 ?>
 	<div class="content">
-		<div class="container">
-			<h1 style="margin-top: 60px; margin-bottom: 20px">Pet</h1>
+		<div style="margin-bottom: 40px" class="container">
+			<h1 style="margin-top: 60px; margin-bottom: 20px">Cadastro Pet</h1>
 			<form class="row g-3" action="#" method="post" enctype="multipart/form-data">
 				<div class="col-md-4">
 					<label for="nome" class="form-label">Nome</label>
@@ -59,12 +59,16 @@ require_once "cabecalho.php";
 					<label for="cor_olhos">Cor dos Olhos</label>
 					<input type="text" class="form-control" id="cor_olhos" name="cor_olhos">
 				</div>
-				<div class="col-md-4">
-					<label class="mx-3" for="situacao">Situação:</label>
-					<input type="radio" name="situacao" value="Procurando o Pet">
-					<label class="me-3">Procurando o Pet</label>
-					<input type="radio" name="situacao" value="Procurando o Tutor">
-					<label>Procurando o Tutor</label>
+				<div class="col-md-4 px-3 d-flex justify-content-between align-items-center">
+					<label for="situacao">Situação:</label>
+					<div>
+						<input type="radio" id="situacao1" name="situacao" value="Procurando o Pet">
+						<label for="situacao1">Procurando o Pet</label>
+					</div>
+					<div>
+						<input type="radio" id="situacao2" name="situacao" value="Procurando o Tutor">
+						<label for="situacao2">Procurando o Tutor</label>
+					</div>
 				</div>
 				<!-- Mensagens de erro para Cor, Cor dos Olhos e Situação -->
 				<div class="col-md-4 text-danger">
@@ -79,14 +83,16 @@ require_once "cabecalho.php";
 
 				<div class="col-md-6">
 					<label for="observacoes">Observações:</label>
-					<textarea class="form-control" id="observacoes" rows="3" name="observacoes"></textarea>
+					<textarea class="form-control" id="observacoes" rows="1" name="observacoes"></textarea>
 				</div>
 				<div class="col-md-6">
 					<label for="imagem">Imagem:</label>
 					<input class="form-control" type="file" id="imagem" name="imagem" onchange="mostrar(this)">
+					<div class="mt-3 text-danger">
+						<?php echo $msg[6]; ?>
+					</div>
+					<img class="" src="" id="img">
 				</div>
-				<div style="color:red; font-size:11px;"><?php echo $msg[6]; ?></div>
-				<img src="" id="img">
 				
 				<div><button type="submit" class="btn btn-primary">Enviar</button></div>
 			</form>
@@ -100,9 +106,10 @@ require_once "cabecalho.php";
 				const reader = new FileReader();
 				reader.onload = (el) => {
 					$('#img')
-					.attr('src', el.target.result)
-					.width(170)
-					.height(100);
+						.attr('src', el.target.result)
+						.addClass('border border-3 border-info rounded')
+						.width(270)
+						.height(200);
 				};
 				reader.readAsDataURL(img.files[0]);
 			}

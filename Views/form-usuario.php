@@ -5,7 +5,7 @@ require_once "cabecalho.php"
 ?>
   <div class="content">
     <div class="container">
-      <h1 style="margin-top: 60px; margin-bottom: 20px">Usuário</h1>
+      <h1 style="margin-top: 60px; margin-bottom: 20px">Cadastro Usuário</h1>
       <form class="row g-3" action="#" method="post">
         <div class="col-md-6">
           <label for="nome" class="form-label">Nome</label>
