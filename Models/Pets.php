@@ -12,8 +12,8 @@ class Pets {
     private string $imagem = "",
     private string $cor = "",
     private string $cor_olhos = "",
-    private string $observacoes = "",
     private string $situacao = "",
+    private string $observacoes = "",
     private Usuarios $usuario = new Usuarios()
   ) {}
 

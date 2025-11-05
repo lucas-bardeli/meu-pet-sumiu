@@ -5,6 +5,7 @@ if (!isset($_SESSION)) {
 }
 
 require_once "Models/Conexao.php";
+require_once "Models/Usuarios.php";
 require_once "Models/PetDAO.php";
 require_once "Models/Pets.php";
 
@@ -12,10 +13,7 @@ class PetController {
   public function inserir() {
     $msg = array("","","","","","","");
 
-    if($_POST) {
-      // echo "<pre>";
-      // var_dump($_FILES["imagem"]);
-      // echo "</pre>";
+    if ($_POST) {
       $erro = false;
 
       if ($_POST["porte"] == 0) {
@@ -60,11 +58,12 @@ class PetController {
       if (!$erro) {
         // inserir no BD - instanciar os objetos
         $usuario = new Usuarios($_SESSION["id"]);
+
         $pet = new Pets(
           0,$_POST["nome"],$_POST["idade"],$_POST["raca"],
           $_POST["porte"],$_POST["local"],$_POST["data"],
           $_FILES["imagem"]["name"],$_POST["cor"],$_POST["cor_olhos"],
-          $_POST["observacoes"],$_POST["situacao"],$usuario
+          $_POST["situacao"],$_POST["observacoes"],$usuario
         );
         $petDAO = new petDAO();
         

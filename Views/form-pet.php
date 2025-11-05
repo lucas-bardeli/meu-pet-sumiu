@@ -78,8 +78,8 @@ require_once "cabecalho.php";
         </div>
 
 				<div class="col-md-6">
-					<label for="observacao">Observações:</label>
-					<textarea class="form-control" id="observacao" rows="3" name="observacao"></textarea>
+					<label for="observacoes">Observações:</label>
+					<textarea class="form-control" id="observacoes" rows="3" name="observacoes"></textarea>
 				</div>
 				<div class="col-md-6">
 					<label for="imagem">Imagem:</label>

@@ -7,6 +7,9 @@ use PHPMailer\PHPMailer\Exception;
 function sendMail($assunto, $mensagem, $remetente, $nomeRemetente, $destino, $nomeDestino)
 {
 
+  $email_username = $_ENV["EMAIL_USERNAME"];
+  $email_password = $_ENV["EMAIL_PASSWORD"];
+
   $mail = new PHPMailer(true);
 
   try {
